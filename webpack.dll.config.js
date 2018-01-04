@@ -5,7 +5,8 @@ const outputPath = isDebug ? path.join(__dirname, 'src/dll/debug') : path.join(_
 
 // 资源依赖包，提前编译
 const lib = [
-    'react'
+    'react',
+    './src/lib/moduleA'
 ];
 
 module.exports = {
@@ -15,15 +16,18 @@ module.exports = {
     },
     output: {
         path: outputPath,
-        filename: '[name]_[chunkhash].js',
-        library: '[name]_[chunkhash]',
+        filename: '[name]_[hash].js',
+        library: '[name]_[hash]_dll',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
     plugins: [
         new webpack.DllPlugin({
             path: path.join(outputPath, 'manifest.json'),
-            name: '[name]_[chunkhash]'
+            name: '[name]_[hash]_dll'
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('production')
         }),
     ]
 };
