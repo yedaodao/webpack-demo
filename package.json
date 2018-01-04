@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "build": "rm -rf ./build && node build-scripts/build.js",
+    "prod": "rm -rf ./build && node build-scripts/build.js",
     "dev": "node build-scripts/dev.js",
     "dll": "webpack --config webpack.dll.config.js --progress"
   },
@@ -22,9 +22,12 @@
   },
   "devDependencies": {
     "babel-preset-react": "^6.24.1",
+    "copy-webpack-plugin": "^4.3.1",
     "file-loader": "^1.1.6",
     "html-loader": "^0.5.1",
+    "html-webpack-include-assets-plugin": "^1.0.2",
     "stats-webpack-plugin": "^0.6.1",
-    "url-loader": "^0.6.2"
+    "url-loader": "^0.6.2",
+    "webpack-merge": "^4.1.1"
   }
 }
